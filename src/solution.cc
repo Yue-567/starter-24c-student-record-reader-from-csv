@@ -3,23 +3,32 @@
 Student ReadStudentRecFromStream(std::istream& is) {
   // your implementation here...
   std::string first_name, last_name;
-  unsigned int uin = 0;
-  double gpa = 0.0;
-  char comma1 = '\0', comma2 = '\0';
-  if (!(is >> first_name >> last_name)) {
+  is >> first_name;
+  if (is.fail()) {
+    return Student{};
+  }
+  is >> last_name;
+  if (is.fail()) {
     return Student{};
   }
   if (last_name.empty() || last_name.back() != ',') {
     return Student{};
   }
   last_name.pop_back();
-  if (!(is >> uin)) {
+  }
+  unsigned int uin = 0;
+  is >> uin;
+  if (is.fail()) {
     return Student{};
   }
-  if (!(is >> comma1) || comma1 != ',') {
+  double gpa = 0.0;
+  is >> gpa;
+  if (is.fail()) {
     return Student{};
   }
-  if (!(is >> gpa)) {
+  char comma = '\0';
+  is >> comma;
+  if (is.fail() || comma != ',') {
     return Student{};
   }
   Student s;
