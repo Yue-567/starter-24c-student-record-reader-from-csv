@@ -1,4 +1,5 @@
 #include "solution.hpp"
+#include <string>
 
 Student ReadStudentRecFromStream(std::istream& is) {
   // your implementation here...
